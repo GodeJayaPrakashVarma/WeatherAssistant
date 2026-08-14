@@ -37,7 +37,7 @@ def ask(location: str) -> str:
                 "properties" : {
                     "location" :{
                         "type" : "string",
-                        "description " : "City name like Hyderabad, London"
+                        "description" : "City name like Hyderabad, London"
                     }
                 },
                 "required" : ["location"]
@@ -74,6 +74,7 @@ def ask(location: str) -> str:
         messages.append({
             "role" : "tool",
             "tool_call_id" : tool_call.id,
+            "name" : tool_call.function.name,
             "content" : json.dumps(weather_data)
         })
 
