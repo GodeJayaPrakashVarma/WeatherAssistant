@@ -37,7 +37,7 @@ def ask(location: str) -> str:
                 "properties" : {
                     "location" :{
                         "type" : "string",
-                        "description " : "City name like Hyderabad, London"
+                        "description" : "City name like Hyderabad, London"
                     }
                 },
                 "required" : ["location"]
@@ -74,6 +74,7 @@ def ask(location: str) -> str:
         messages.append({
             "role" : "tool",
             "tool_call_id" : tool_call.id,
+            "name" : tool_call.function.name,
             "content" : json.dumps(weather_data)
         })
 
@@ -90,8 +91,8 @@ demo = gr.Interface(
     fn=ask,
     inputs=[gr.Textbox(lines=1, placeholder="Enter location name", label="Location")],
     outputs=[gr.Textbox(lines=4, label="Weather")],
-    title="Get Weather of a Location",
-    description="Enter to name of the location to display it's weather condition"
+    title="Weather Assistant",
+    description="Enter the name of the location to get the weather"
 )
 
 demo.launch(share=True)
